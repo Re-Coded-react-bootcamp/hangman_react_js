@@ -1,25 +1,21 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import RandomwordAPI from "./component/randomwordAPI/randomwordAPI.jsx";
+import Buttons from "./component/Butoons/Buttons";
 
 function App() {
+  const name = "Ali";
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>hello world!</p>
-      </header>
+      <div className="Buttons">
+        <Buttons />
+      </div>
+      <div className="words">
+        <p>the random word is</p>
+
+        <RandomwordAPI />
+      </div>
     </div>
   );
 }
