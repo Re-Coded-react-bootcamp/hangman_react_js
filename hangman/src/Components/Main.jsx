@@ -43,6 +43,10 @@ export default class Main extends Component {
     this.state = { ...initialState };
   }
 
+  handlePlayAgain = () => {
+    this.setState({ ...initialState });
+  };
+
   render() {
     return (
       <div>
@@ -51,8 +55,8 @@ export default class Main extends Component {
         <HangState />
 
         <div>
-          <button> Hint </button>
-          <button> Play Again </button>
+          <button onClick={this.handleh}> Hint </button>
+          <button onClick={this.handlePlayAgain}> Play Again </button>
         </div>
       </div>
     );
