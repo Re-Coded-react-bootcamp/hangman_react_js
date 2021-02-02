@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class Letters_Btn extends Component {
 
+	
     render() {
         return (
 			<div>
