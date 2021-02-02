@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
+import MatchedLetters from './MatchedLetters';
+import HangState from './HangState';
 
 const initialState = {
   word: '',
@@ -45,6 +47,9 @@ export default class Main extends Component {
     return (
       <div>
         <LetterBtn letters={this.state.alpha} />
+        <MatchedLetters />
+        <HangState />
+
         <div>
           <button> Hint </button>
           <button> Play Again </button>
