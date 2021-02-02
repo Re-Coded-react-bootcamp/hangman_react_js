@@ -29,7 +29,7 @@ export default class randomwordAPI extends Component {
       return (
         <ul>
           {word.map((item) => (
-            <li key={item}>{item.split("__")}</li>
+            <li key={item}>{item}</li>
           ))}
         </ul>
       );
