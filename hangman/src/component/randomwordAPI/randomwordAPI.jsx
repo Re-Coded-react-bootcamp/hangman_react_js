@@ -19,6 +19,7 @@ export default class randomwordAPI extends Component {
         });
       });
   }
+  //
 
   render() {
     var { fetched, word } = this.state;
