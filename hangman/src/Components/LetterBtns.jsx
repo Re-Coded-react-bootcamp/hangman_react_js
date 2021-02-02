@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 
 export default class Letters_Btn extends Component {
 
-	// constructor(porps) {
-	// 	super(props)
-
-	// }
     render() {
         return (
 			<div>
