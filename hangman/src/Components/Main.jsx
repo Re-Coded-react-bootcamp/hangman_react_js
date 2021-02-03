@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
 import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
+import Header from './Header';
 
+const title = "Use the alphabet below to guess the word, or click hint to get a clue."
 const initialState = {
-        word: [],
+   word: [],
   counter: 10,
   isGameOver: false,
   guessedLetters: new Set(),
@@ -64,6 +66,7 @@ export default class Main extends Component {
     const { word } = this.state;
     return (
       <div>
+      <Header title={title} />
       <p>{word}</p>
         <LetterBtn letters={this.state.alpha} clickedButton={this.clickedButton} guessedLetters={this.state.guessedLetters} />
         <MatchedLetters />
