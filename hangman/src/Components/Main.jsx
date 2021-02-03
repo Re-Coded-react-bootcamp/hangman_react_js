@@ -50,15 +50,14 @@ export default class Main extends Component {
 
   clickedButton = (event) => {
 	this.setState({
-		pressed: this.state.guessedLetters.add(event.target.name),
-		lastupdate: event.target.name
+		guessedLetters: this.state.guessedLetters.add(event.target.name),
 		})
 	}
 
   render() {
     return (
       <div>
-        <LetterBtn letters={this.state.alpha} letter={this.state.lastupdate} clickedButton={this.clickedButton} guessedLetters={this.guessedLetters} />
+        <LetterBtn letters={this.state.alpha} clickedButton={this.clickedButton} guessedLetters={this.state.guessedLetters} />
         <MatchedLetters />
         <HangState />
 
