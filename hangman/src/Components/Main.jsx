@@ -4,7 +4,7 @@ import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
 
 const initialState = {
-  word: '',
+  word: 'Kingbar',
   counter: 10,
   isGameOver: false,
   guessedLetters: new Set(),
@@ -36,7 +36,6 @@ const initialState = {
     'Y',
     'Z',
   ],
-  lastupdate: null
 };
 export default class Main extends Component {
   constructor(props) {
