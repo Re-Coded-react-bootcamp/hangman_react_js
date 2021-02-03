@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
 import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
+import Header from './Header';
 
+const title = "Use the alphabet below to guess the word, or click hint to get a clue."
 const initialState = {
-  word: 'Kingbar',
+   word: [],
   counter: 10,
   isGameOver: false,
   guessedLetters: new Set(),
@@ -40,9 +42,15 @@ const initialState = {
 export default class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...initialState };
+    this.state = { ...initialState 
+  };
   }
-
+ componentDidMount() {
+    fetch("https://random-word-api.herokuapp.com/word?number=1")
+      .then((res) => res.json())
+      .then((word) => this.setState({ word }));
+  }
+ 
   handlePlayAgain = () => {
     this.setState({ ...initialState });
   };
@@ -54,8 +62,11 @@ export default class Main extends Component {
 	}
 
   render() {
+    const { word } = this.state;
     return (
       <div>
+      <Header title={title} />
+      <p>{word}</p>
         <LetterBtn letters={this.state.alpha} clickedButton={this.clickedButton} guessedLetters={this.state.guessedLetters} />
         <MatchedLetters />
         <HangState />
