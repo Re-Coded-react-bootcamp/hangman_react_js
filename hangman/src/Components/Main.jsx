@@ -7,7 +7,7 @@ const initialState = {
   word: '',
   counter: 10,
   isGameOver: false,
-  guessedLetters: [],
+  guessedLetters: new Set(),
   alpha: [
     'A',
     'B',
@@ -36,6 +36,7 @@ const initialState = {
     'Y',
     'Z',
   ],
+  lastupdate: null
 };
 export default class Main extends Component {
   constructor(props) {
@@ -47,10 +48,17 @@ export default class Main extends Component {
     this.setState({ ...initialState });
   };
 
+  clickedButton = (event) => {
+	this.setState({
+		pressed: this.state.guessedLetters.add(event.target.name),
+		lastupdate: event.target.name
+		})
+	}
+
   render() {
     return (
       <div>
-        <LetterBtn letters={this.state.alpha} />
+        <LetterBtn letters={this.state.alpha} letter={this.state.lastupdate} clickedButton={this.clickedButton} guessedLetters={this.guessedLetters} />
         <MatchedLetters />
         <HangState />
 
