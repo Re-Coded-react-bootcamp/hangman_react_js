@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
 import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
-import Header from './Header';
+import Hello from './Hello'
 
 const initialState = {
   word: '',
+  fetched: false,
+  error: null,
   counter: 10,
   isGameOver: false,
   guessedLetters: new Set(),
@@ -42,13 +44,18 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
       this.state = { ...initialState };
-
-      this.getdata = this.getdata.bind(this)
- }
+  }
 
   getdata = () => {fetch("https://random-word-api.herokuapp.com/word?number=1")
   .then( res => res.json())
-  .then( result => this.setState({ word: result[0] }));
+  .then( result => this.setState({ 
+    word: result[0],
+    fetched: true
+    }), 
+    error => {this.setState({
+      error: error 
+      })
+    });
   }
 
  componentDidMount() {
@@ -59,6 +66,8 @@ export default class Main extends Component {
     this.getdata()
     this.setState({
       word: '',
+      fetched: false,
+      error: null,
       counter: 10,
       isGameOver: false,
       guessedLetters: new Set(),
@@ -83,20 +92,17 @@ export default class Main extends Component {
   }
 
   render() {
-    const { word } = this.state;
     return (
       <div>
-        <Header />
-        <p>{word}</p>
+        <div>{this.state.counter}</div>
 
         <LetterBtn letters={this.state.alpha} clickedButton={this.clickedButton} 
-        guessedLetters={this.state.guessedLetters} counter={this.state.counter}/>
-
-        <MatchedLetters />
+        guessedLetters={this.state.guessedLetters} counter={this.state.counter} fetched={this.state.fetched} />
+        <Hello />
+        <MatchedLetters letters={this.state.word} guessedLetters={this.state.guessedLetters} fetched={this.state.fetched} />
         <HangState />
 
         <div>
-          <div>{this.state.counter}</div>
           <button onClick={this.handleh}> Hint </button>
           <button onClick={this.handlePlayAgain}> Play Again </button>
         </div>
