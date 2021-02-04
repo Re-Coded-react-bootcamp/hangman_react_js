@@ -5,9 +5,9 @@ export default class Letters_Btn extends Component {
 
 	componentDidUpdate() {
 		if (this.props.counter === 0) {
-		  console.log('last call')
 		  setTimeout(function() {
-			alert("color changed!");},1000)
+			alert("color changed!");
+		},1000)
 	  
 		}
 	  }
@@ -18,7 +18,6 @@ export default class Letters_Btn extends Component {
 				{this.props.letters.map( item => <button key={item} name={item} 
 					value={item} disabled={this.props.fetched ? this.props.guessedLetters.has(item) : false} 
 					onClick={ this.props.fetched ? this.props.clickedButton : null } >{item.toUpperCase()}</button>)}
-					{console.log('render')}
 			</div>
 		)
     }

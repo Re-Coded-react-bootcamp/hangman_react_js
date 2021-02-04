@@ -51,7 +51,7 @@ export default class Main extends Component {
     word: result[0],
     fetched: true
     }), 
-    error => {this.setState({
+    error => { this.setState({
       error: error 
       })
     });
@@ -64,13 +64,8 @@ export default class Main extends Component {
   handlePlayAgain = () => {
     this.getdata()
     this.setState({
-      word: '',
-      fetched: false,
-      error: null,
-      counter: 10,
-      isGameOver: false,
-      guessedLetters: new Set(),
-      alpha: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',]
+      ...initialState,
+      guessedLetters: this.state.guessedLetters.clear()
     });
   };
 
