@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
 import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
-import Hello from './Hello'
 
 const initialState = {
   word: '',
@@ -12,32 +11,32 @@ const initialState = {
   isGameOver: false,
   guessedLetters: new Set(),
   alpha: [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z',
   ],
 };
 export default class Main extends Component {
@@ -71,18 +70,16 @@ export default class Main extends Component {
       counter: 10,
       isGameOver: false,
       guessedLetters: new Set(),
-      alpha: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',]
+      alpha: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',]
     });
   };
 
   clickedButton = (event) => {
-    if (!this.state.word.includes(event.target.name.toLowerCase())) {
+    if (!this.state.word.includes(event.target.name)) {
       this.setState({ 
         counter: this.state.counter - 1,
         guessedLetters: this.state.guessedLetters.add(event.target.name) 
       })
-       console.log("hello world")
-       
      }
     else {
         this.setState({
@@ -98,7 +95,6 @@ export default class Main extends Component {
 
         <LetterBtn letters={this.state.alpha} clickedButton={this.clickedButton} 
         guessedLetters={this.state.guessedLetters} counter={this.state.counter} fetched={this.state.fetched} />
-        <Hello />
         <MatchedLetters letters={this.state.word} guessedLetters={this.state.guessedLetters} fetched={this.state.fetched} />
         <HangState />
 

@@ -17,7 +17,7 @@ export default class Letters_Btn extends Component {
 			<div>
 				{this.props.letters.map( item => <button key={item} name={item} 
 					value={item} disabled={this.props.fetched ? this.props.guessedLetters.has(item) : false} 
-					onClick={ this.props.fetched ? this.props.clickedButton : null } >{item}</button>)}
+					onClick={ this.props.fetched ? this.props.clickedButton : null } >{item.toUpperCase()}</button>)}
 					{console.log('render')}
 			</div>
 		)
