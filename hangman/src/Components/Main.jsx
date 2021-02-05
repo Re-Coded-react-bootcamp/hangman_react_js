@@ -97,6 +97,11 @@ export default class Main extends Component {
       <div>
         <div>{this.state.counter}</div>
 
+         <MatchedLetters
+          word={this.state.word}
+          guessedLetters={this.state.guessedLetters}
+          fetched={this.state.fetched}
+        />
         <LetterBtn
           letters={this.state.alpha}
           clickedButton={this.clickedButton}
@@ -104,11 +109,7 @@ export default class Main extends Component {
           counter={this.state.counter}
           fetched={this.state.fetched}
         />
-        <MatchedLetters
-          word={this.state.word}
-          guessedLetters={this.state.guessedLetters}
-          fetched={this.state.fetched}
-        />
+       
         <HangState counter={this.state.counter} />
 
         <div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../Styles/LetterBtns.css'
 
 export default class Letters_Btn extends Component {
   componentDidUpdate() {
@@ -11,9 +12,14 @@ export default class Letters_Btn extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.letters.map((item) => (
-          <button
+      <div className="">
+        <div class="row justify-content-center">
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+              <div className="lettersBox">
+           {this.props.letters.map((item) => (
+          <button className="alphaLtrs"
             key={item}
             name={item}
             value={item}
@@ -27,6 +33,10 @@ export default class Letters_Btn extends Component {
             {item.toUpperCase()}
           </button>
         ))}
+        </div>
+        </div>
+      </div>
+       
       </div>
     );
   }

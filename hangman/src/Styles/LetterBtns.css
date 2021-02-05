@@ -1,0 +1,15 @@
+.alphaLtrs{
+   font-size: 22px;
+   border: 1px solid #000;
+   width: 35px;
+   height: 35px;
+   line-height: 30px;
+   margin-left: 3px;
+   margin-top: 2px;
+   background-color: #E399A9;
+   float: left;
+outline: none;
+}
+.lettersBox{
+    width: 50%;
+}
