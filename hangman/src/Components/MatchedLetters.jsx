@@ -6,11 +6,11 @@ export default class MatchedLetters extends Component {
 
     return (
       <div>
-      <div class="row justify-content-center">
-      <div class="col-4">
+      <div className="row justify-content-center">
+      <div className="col-4">
         </div>
         <div className="matchedLtrs">
-        <div class="col-8">
+        <div className="col-8">
         {word.split('').map((letter) => {
           let isLetterMached = guessedLetters && guessedLetters.has(letter);
           return (

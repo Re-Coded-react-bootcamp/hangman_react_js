@@ -13,10 +13,10 @@ export default class Letters_Btn extends Component {
   render() {
     return (
       <div className="">
-        <div class="row justify-content-center">
-        <div class="col-4">
+        <div className="row justify-content-center">
+        <div className="col-4">
         </div>
-        <div class="col-4">
+        <div className="col-4">
               <div className="lettersBox">
            {this.props.letters.map((item) => (
           <button className="alphaLtrs"

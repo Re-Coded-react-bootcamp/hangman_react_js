@@ -25,7 +25,7 @@ export default class HangState extends Component {
 
   render() {
     return (
-      <div>
+      <div className="">
         <img src={this.state.image} alt="hangman" />
       </div>
     );
