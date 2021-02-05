@@ -70,10 +70,11 @@ export default class Main extends Component {
     this.getdata();
     this.setState({
       ...initialState,
-      guessedLetters: this.state.guessedLetters.clear(),
+      guessedLetters: new Set()
     });
   };
   clickedButton = (event) => {
+    let won = true
     if (!this.state.word.includes(event.target.name)) {
       this.setState({
         counter: this.state.counter - 1,
@@ -83,6 +84,18 @@ export default class Main extends Component {
       this.setState({
         guessedLetters: this.state.guessedLetters.add(event.target.name),
       });
+    }
+    for (let letter of this.state.word) {
+      if (this.state.guessedLetters.has(letter)) {
+        continue
+      }
+      else {
+        won = false
+        break
+      }
+    }
+    if (won) {
+      alert('won')
     }
   };
 

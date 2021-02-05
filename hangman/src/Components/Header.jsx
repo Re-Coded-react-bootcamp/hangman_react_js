@@ -8,7 +8,7 @@ export default class Header extends Component {
 		return (
 			<div>
 			        <img src={logo} className="App-logo" alt="logo" />
-				<h3 class="lead">Use the alphabet below to guess the word, or click hint to get a clue.</h3>
+				<h3 className="lead">Use the alphabet below to guess the word, or click hint to get a clue.</h3>
 			</div>
 		)
 	}
