@@ -26,4 +26,4 @@ this game is bulit using React JS
 #### Contributors
 
 this game is developed by Lava Team <br><br>
-![team](images/lava-team)<br>
+![team](images/lava-team.jpg)<br>
