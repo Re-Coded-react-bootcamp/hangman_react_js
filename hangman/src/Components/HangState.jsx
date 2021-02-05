@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../Styles/HangState.css'
 
 export default class HangState extends Component {
   constructor(props) {
@@ -25,9 +26,14 @@ export default class HangState extends Component {
 
   render() {
     return (
-      <div className="">
-        <img src={this.state.image} alt="hangman" />
-      </div>
+      <div className="row justify-content-center">
+      <div className="col-8">
+         <img src={this.state.image} alt="hangman" className="imgBlock"/>
+        </div>
+        <div className="col-4">
+        </div>
+        </div>
+
     );
   }
 }
