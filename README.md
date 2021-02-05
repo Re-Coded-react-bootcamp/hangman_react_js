@@ -5,12 +5,12 @@ Visit to play
 
 ## Game OverView
 
-The purpose of the game is to guess the word to save the person from being hanged <br>
-![game photo](images/Hangman.png)<br>
-if you guessed the words right the person will survive <br>
-![win](images/hangman-win.png)<br>
-if you guessed the words wrong the person will die <br>
-![lost](images/hangman-lose.png)<br>
+The purpose of the game is to guess the word to save the person from being hanged <br><br>
+![game photo](images/Hangman.png)<br><br>
+if you guessed the words right the person will survive <br><br>
+![win](images/hangman-win.png)<br><br>
+if you guessed the words wrong the person will die <br><br>
+![lost](images/hangman-lose.png)<br><br>
 
 ### How to play
 
@@ -25,4 +25,5 @@ this game is bulit using React JS
 
 #### Contributors
 
-this game is developed by Lava Team
+this game is developed by Lava Team <br><br>
+![team](images/lava-team)<br>
