@@ -78,6 +78,7 @@ export default class Main extends Component {
       };
     });
   };
+
   clickedButton = (event) => {
     if (!this.state.word.includes(event.target.name)) {
       this.setState({
@@ -110,11 +111,6 @@ export default class Main extends Component {
           fetched={this.state.fetched}
         />
         <HangState counter={this.state.counter} />
-
-        <div>
-          <button onClick={this.handleh}> Hint </button>
-          <button onClick={this.handlePlayAgain}> Play Again </button>
-        </div>
       </div>
     );
   }
