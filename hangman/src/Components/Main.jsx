@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
 import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+import _ from 'lodash';
+
 
 const initialState = {
   word: '',
   fetched: false,
   error: null,
+  desc: null,
+  fetcheddesc: false,
+  errordesc: null,
   counter: 10,
   isGameOver: false,
   guessedLetters: new Set(),
@@ -51,10 +58,12 @@ export default class Main extends Component {
       .then((res) => res.json())
       .then(
         (result) =>
-          this.setState({
+          {this.setState({
             word: result[0],
             fetched: true,
-          }),
+          })
+        this.getdesc()
+        },
         (error) => {
           this.setState({
             error: error,
@@ -63,8 +72,25 @@ export default class Main extends Component {
       );
   };
 
+  getdesc = () => {
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en_US/${this.state.word}`)
+    .then(res => res.json())
+    .then( 
+      (result) => 
+      this.setState({
+        desc: result,
+        fetcheddesc: true,
+      }),
+      (error) => {
+        this.setState({
+          errordesc: error,
+        });
+      }
+    );
+  };
+
   componentDidMount() {
-    this.getdata();
+    this.getdata()
   }
 
   handlePlayAgain = () => {
@@ -84,8 +110,8 @@ export default class Main extends Component {
       });
     } else {
       this.setState({
-        guessedLetters: guessedLetters.add(event.target.name),
-        corrletter: corrletter.add(event.target.name)
+        guessedLetters: this.state.guessedLetters.add(event.target.name),
+        corrletter: this.state.corrletter.add(event.target.name)
       });
     }
     for (let letter of this.state.word) {
@@ -103,16 +129,29 @@ export default class Main extends Component {
   };
 
   render() {
-    console.log(this.state);
+    let obj = this.state.desc;
     return (
       <div>
         <div>{this.state.counter}</div>
 
-         <MatchedLetters
+        {this.state.fetcheddesc ? 
+          <div><div>{ _.get( obj, ["0", "meanings", "0", "definitions", "0", "definition"],'No Available Data!') } </div>
+          {console.log(obj)}
+          <MatchedLetters
           word={this.state.word}
           guessedLetters={this.state.guessedLetters}
           fetched={this.state.fetched}
-        />
+        /></div> :
+          <Loader
+            type="Puff"
+            color="#00BFFF"
+            height={68}
+            width={68}
+            timeout={3000} 
+          />
+        }
+          
+         
         <LetterBtn
           letters={this.state.alpha}
           clickedButton={this.clickedButton}
