@@ -68,9 +68,14 @@ export default class Main extends Component {
 
   handlePlayAgain = () => {
     this.getdata();
-    this.setState({
-      ...initialState,
-      guessedLetters: this.state.guessedLetters.clear(),
+    this.setState((prevState) => {
+      if (prevState.guessedLetters) {
+        prevState.guessedLetters.clear();
+      }
+      return {
+        ...initialState,
+        guessedLetters: prevState.guessedLetters,
+      };
     });
   };
   clickedButton = (event) => {
@@ -87,6 +92,7 @@ export default class Main extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <div>{this.state.counter}</div>

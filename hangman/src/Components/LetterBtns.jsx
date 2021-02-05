@@ -18,7 +18,9 @@ export default class Letters_Btn extends Component {
             name={item}
             value={item}
             disabled={
-              this.props.fetched ? this.props.guessedLetters.has(item) : false
+              this.props.fetched && this.props.guessedLetters
+                ? this.props.guessedLetters.has(item)
+                : false
             }
             onClick={this.props.fetched ? this.props.clickedButton : null}
           >

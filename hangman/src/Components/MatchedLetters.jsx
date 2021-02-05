@@ -7,7 +7,7 @@ export default class MatchedLetters extends Component {
     return (
       <div>
         {word.split('').map((letter) => {
-          let isLetterMached = guessedLetters.has(letter);
+          let isLetterMached = guessedLetters && guessedLetters.has(letter);
           return (
             <>
               <p
