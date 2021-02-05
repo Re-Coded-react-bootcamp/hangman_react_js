@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
 import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
-import '../Styles/Main.css';
+import '../Styles/Main.css'
 
 const initialState = {
-  word: [],
+  word: '',
   fetched: false,
   error: null,
   counter: 10,
-  machedWord: [],
-  isWon: false,
+  isGameOver: false,
   guessedLetters: new Set(),
   alpha: [
     'a',
@@ -53,7 +52,7 @@ export default class Main extends Component {
       .then(
         (result) =>
           this.setState({
-            word: result[0].split(''),
+            word: result[0],
             fetched: true,
           }),
         (error) => {
@@ -82,27 +81,14 @@ export default class Main extends Component {
   };
 
   clickedButton = (event) => {
-    let letterClicked = event.target.name;
-    if (!this.state.word.includes(letterClicked)) {
-      this.setState((prevState) => {
-        return {
-          counter: prevState.counter - 1,
-          guessedLetters: prevState.guessedLetters.add(letterClicked),
-        };
+    if (!this.state.word.includes(event.target.name)) {
+      this.setState({
+        counter: this.state.counter - 1,
+        guessedLetters: this.state.guessedLetters.add(event.target.name),
       });
     } else {
-      this.setState((prevState) => {
-        prevState.word.map((item, i) => {
-          if (item === letterClicked) {
-            prevState.machedWord[i] = item;
-          }
-        });
-
-        return {
-          guessedLetters: this.state.guessedLetters.add(letterClicked),
-          machedWord: prevState.machedWord,
-          isWon: prevState.word.join('') === prevState.machedWord.join(''),
-        };
+      this.setState({
+        guessedLetters: this.state.guessedLetters.add(event.target.name),
       });
     }
   };
@@ -111,14 +97,13 @@ export default class Main extends Component {
     console.log(this.state);
     return (
       <div>
-        <div className="row justify-content-center">
-          <div className="col-4">
-            <div className="counter"> Counter: {this.state.counter}</div>
-          </div>
-          <div className="col-4"></div>
-        </div>
-
-        <MatchedLetters
+       <div className="row justify-content-center">
+      <div className="col-4">
+        <div className="counter"> Counter: {this.state.counter}</div>
+      </div>
+             <div className="col-4"></div>
+      </div>
+         <MatchedLetters
           word={this.state.word}
           guessedLetters={this.state.guessedLetters}
           fetched={this.state.fetched}
@@ -130,8 +115,8 @@ export default class Main extends Component {
           counter={this.state.counter}
           fetched={this.state.fetched}
         />
-
-        <HangState counter={this.state.counter} isWon={this.state.isWon} />
+       
+        <HangState counter={this.state.counter} />
       </div>
     );
   }
