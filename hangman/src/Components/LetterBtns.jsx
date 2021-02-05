@@ -5,7 +5,7 @@ export default class Letters_Btn extends Component {
   componentDidUpdate() {
     if (this.props.counter === 0) {
       setTimeout(function () {
-        alert('changed!');
+        alert('YOU LOST!');
       }, 100);
     }
   }
