@@ -103,7 +103,7 @@ export default class Main extends Component {
           guessedLetters={this.state.guessedLetters}
           fetched={this.state.fetched}
         />
-        <HangState />
+        <HangState counter={this.state.counter} />
 
         <div>
           <button onClick={this.handleh}> Hint </button>
