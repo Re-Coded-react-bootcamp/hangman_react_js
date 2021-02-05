@@ -1,38 +1,277 @@
-.App {
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* 
+.game {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.body {
+  display: flex;
+}
+
+.help {
+  color: #666;
+  margin: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+`.left {
+  text-align: center;
+  width: 50%;
+  border: thin solid #ddd;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.right {
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+  border: thin solid #ddd;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.star {
+	display: inline-block;
+  margin: 0 15px;
+}
+
+.star:after {
+  content: "\2605";
+  font-size: 45px;
+}
+
+.number {
+  background-color: #eee;
+  border: thin solid #ddd;
+  width: 45px;
+  height: 45px;
+  margin: 10px;
+  font-size: 25px;
+}
+
+.number:focus, .number:active {
+  outline: none;
+  border: thin solid #ddd;
+}
+
+.timer {
+	color: #666;
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.game-done .message {
+  font-size: 250%;
+  font-weight: bold;
+  margin: 15px;
+} */
+
+button{
+  padding: 5px 20px;
+    font-size: 20px;
+    border-radius: 5px; 
+    outline: 0px !important;
+    border: 0;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+    transition: 0.4s all ease-in-out;
+}
+button:hover{
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.0);
+}
+
+body{
+ 
+    height: 100vh; 
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.header{
+  text-align: center;
+  color: #244994;
+}
+
+.btn{
+ margin-right:25px ;
+  
+}
+
+
+.blue{
+  background-color: royalblue;
   color: white;
+  
 }
 
-.App-link {
-  color: #61dafb;
+
+.grid-1{
+  height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 25px;
+  margin:10px 10% ;
+  grid-gap: 20px;
+ 
+}
+.mt-10px{
+  margin-top: 10px;
+  }
+.mt-1{
+margin-top: 10vh;
+}
+.mt-2{
+  margin-top: 15vh;
+  }
+
+.grid-2{
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  justify-items: center;
+  padding: 10px;
+  grid-gap: 10px;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media  (max-width: 767px){
+  .grid-1{
+  
+    padding: 10px;
+    margin:5px 5% ;
+    grid-gap: 10px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .grid-2{
+    display: grid;
+    grid-template-columns: 1fr !important;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    padding: 5px;
+    grid-gap: 10px;
+    width: 100%;
   }
+
+  .grid-col{
+    justify-self: center !important;
+    width: 100%;
+  text-align: center;
+
+ 
+  }
+  .right{
+   text-align: right !important;
+  }
+
+  .letters{
+    justify-content: center !important;
+  }
+
+}
+
+img{
+  width: 70% !important;
+}
+.d-inline{
+  display: inline-block;
+
+}
+.grid-2-even{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+ padding-bottom: 0px;
+ 
+}
+
+.grid-col{
+  justify-self: start !important;
+  width: 100%;
+}
+
+.win{
+  color: #05804d;
+  margin-top:10px ;
+font-size: 1.7em;
+}
+
+.lose{
+  
+
+ color: red;
+  margin-top:10px ;
+font-size: 1.7em;
+
+ 
+}
+
+.trailes{
+  color:  rgba(26, 56, 206, 0.959);
+}
+
+.lettersKnwn{
+  color: white;
+  background-color: rgba(26, 56, 206, 0.959);
+  border-radius: 15px;
+  border: 1px ;
+  padding: 10px;
+  margin-right: 5px;
+}
+.lettersNotKnw{
+  color: white;
+  background-color:  #5e81c7;
+  border-radius: 15px;
+  border: 1px ;
+  padding: 10px;
+  margin-right: 5px;
+ 
+}
+.letters{
+ 
+  text-align: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns:repeat(auto-fit, 25px);
+  grid-auto-columns: dense;
+ justify-content: start;
+ justify-items: start;
+ grid-gap: 10px;
+}
+
+.buttonStyle {
+  background-color: #87ceeb;
+  color: white;
+  border: 2px solid #87ceeb !important;
+ 
+}
+
+.buttonStyle:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #87ceeb !important;
+}
+
+.buttonStyle.true{
+  background-color:rgb(239, 239, 239);
+  color: rgb(61, 61, 61);
+  border:  rgb(61, 61, 61) !important;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0) !important;
+
+}
+
+
+
+.buttons{
+  text-align: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns:repeat(auto-fit, 60px);
+  grid-auto-columns: dense;
+ justify-content: center;
+ justify-items: center;
+ grid-gap: 10px;
+ 
 }
