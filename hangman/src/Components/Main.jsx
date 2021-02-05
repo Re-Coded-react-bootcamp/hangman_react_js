@@ -10,6 +10,7 @@ const initialState = {
   counter: 10,
   isGameOver: false,
   guessedLetters: new Set(),
+  corrletter: new Set(),
   alpha: [
     'a',
     'b',
@@ -67,12 +68,13 @@ export default class Main extends Component {
   }
 
   handlePlayAgain = () => {
-    this.getdata();
     this.setState({
       ...initialState,
       guessedLetters: new Set()
     });
+    this.getdata();
   };
+
   clickedButton = (event) => {
     let won = true
     if (!this.state.word.includes(event.target.name)) {
@@ -82,7 +84,8 @@ export default class Main extends Component {
       });
     } else {
       this.setState({
-        guessedLetters: this.state.guessedLetters.add(event.target.name),
+        guessedLetters: guessedLetters.add(event.target.name),
+        corrletter: corrletter.add(event.target.name)
       });
     }
     for (let letter of this.state.word) {
@@ -100,10 +103,16 @@ export default class Main extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <div>{this.state.counter}</div>
 
+         <MatchedLetters
+          word={this.state.word}
+          guessedLetters={this.state.guessedLetters}
+          fetched={this.state.fetched}
+        />
         <LetterBtn
           letters={this.state.alpha}
           clickedButton={this.clickedButton}
@@ -111,17 +120,8 @@ export default class Main extends Component {
           counter={this.state.counter}
           fetched={this.state.fetched}
         />
-        <MatchedLetters
-          word={this.state.word}
-          guessedLetters={this.state.guessedLetters}
-          fetched={this.state.fetched}
-        />
-        <HangState />
-
-        <div>
-          <button onClick={this.handleh}> Hint </button>
-          <button onClick={this.handlePlayAgain}> Play Again </button>
-        </div>
+       
+        <HangState counter={this.state.counter} />
       </div>
     );
   }
