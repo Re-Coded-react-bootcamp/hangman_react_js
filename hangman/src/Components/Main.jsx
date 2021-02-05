@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
 import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
+import '../Styles/Main.css'
 
 const initialState = {
   word: '',
@@ -96,8 +97,12 @@ export default class Main extends Component {
     console.log(this.state);
     return (
       <div>
-        <div>{this.state.counter}</div>
-
+       <div className="row justify-content-center">
+      <div className="col-4">
+        <div className="counter"> Counter: {this.state.counter}</div>
+      </div>
+             <div className="col-4"></div>
+      </div>
          <MatchedLetters
           word={this.state.word}
           guessedLetters={this.state.guessedLetters}
