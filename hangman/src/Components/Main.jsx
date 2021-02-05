@@ -5,17 +5,18 @@ import HangState from './HangState';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import _ from 'lodash';
-
+import '../Styles/Main.css';
 
 const initialState = {
-  word: '',
+  word: [],
   fetched: false,
   error: null,
   desc: null,
   fetcheddesc: false,
   errordesc: null,
   counter: 10,
-  isGameOver: false,
+  machedWord: [],
+  isWon: false,
   guessedLetters: new Set(),
   corrletter: new Set(),
   alpha: [
@@ -57,9 +58,9 @@ export default class Main extends Component {
     fetch('https://random-word-api.herokuapp.com/word?number=1')
       .then((res) => res.json())
       .then(
-        (result) =>
-          {this.setState({
-            word: result[0],
+        (result) => {
+          this.setState({
+            word: result[0].split(''),
             fetched: true,
           })
         this.getdesc()
@@ -102,16 +103,28 @@ export default class Main extends Component {
   };
 
   clickedButton = (event) => {
-    let won = true
-    if (!this.state.word.includes(event.target.name)) {
-      this.setState({
-        counter: this.state.counter - 1,
-        guessedLetters: this.state.guessedLetters.add(event.target.name),
+    let won = false
+    let letterClicked = event.target.name;
+    if (!this.state.word.includes(letterClicked)) {
+      this.setState((prevState) => {
+        return {
+          counter: prevState.counter - 1,
+          guessedLetters: prevState.guessedLetters.add(letterClicked),
+        };
       });
     } else {
-      this.setState({
-        guessedLetters: this.state.guessedLetters.add(event.target.name),
-        corrletter: this.state.corrletter.add(event.target.name)
+      this.setState((prevState) => {
+        prevState.word.map((item, i) => {
+          if (item === letterClicked) {
+            prevState.machedWord[i] = item;
+          }
+        });
+
+        return {
+          guessedLetters: this.state.guessedLetters.add(letterClicked),
+          machedWord: prevState.machedWord,
+          isWon: prevState.word.join('') === prevState.machedWord.join(''),
+        };
       });
     }
     for (let letter of this.state.word) {
@@ -132,7 +145,12 @@ export default class Main extends Component {
     let obj = this.state.desc;
     return (
       <div>
-        <div>{this.state.counter}</div>
+        <div className="row justify-content-center">
+          <div className="col-4">
+            <div className="counter"> Counter: {this.state.counter}</div>
+          </div>
+          <div className="col-4"></div>
+        </div>
 
         {this.state.fetcheddesc ? 
           <div><div>{ _.get( obj, ["0", "meanings", "0", "definitions", "0", "definition"],'No Available Data!') } </div>
@@ -159,8 +177,8 @@ export default class Main extends Component {
           counter={this.state.counter}
           fetched={this.state.fetched}
         />
-       
-        <HangState counter={this.state.counter} />
+
+        <HangState counter={this.state.counter} isWon={this.state.isWon} />
       </div>
     );
   }

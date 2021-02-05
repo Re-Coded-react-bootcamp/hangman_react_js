@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Styles/HangState.css'
+import '../Styles/HangState.css';
 
 export default class HangState extends Component {
   constructor(props) {
@@ -11,7 +11,9 @@ export default class HangState extends Component {
   }
 
   importImage = () =>
-    import(`../Images/${this.props.counter}.png`).then((image) => {
+    import(
+      `../Images/${this.props.isWon ? 'win' : this.props.counter}.png`
+    ).then((image) => {
       this.setState({ image: image.default });
     });
 
@@ -20,20 +22,21 @@ export default class HangState extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.counter !== this.props.counter && this.props.counter !== 0)
+    if (
+      (prevProps.counter !== this.props.counter && this.props.counter !== 0) ||
+      prevProps.isWon !== this.props.isWon
+    )
       this.importImage();
   }
 
   render() {
     return (
       <div className="row justify-content-center">
-      <div className="col-8">
-         <img src={this.state.image} alt="hangman" className="imgBlock"/>
+        <div className="col-8">
+          <img src={this.state.image} alt="hangman" className="imgBlock" />
         </div>
-        <div className="col-4">
-        </div>
-        </div>
-
+        <div className="col-4"></div>
+      </div>
     );
   }
 }

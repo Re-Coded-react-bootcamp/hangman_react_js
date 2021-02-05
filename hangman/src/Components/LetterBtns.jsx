@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../Styles/LetterBtns.css'
+import '../Styles/LetterBtns.css';
 
 export default class Letters_Btn extends Component {
   componentDidUpdate() {
@@ -14,29 +14,29 @@ export default class Letters_Btn extends Component {
     return (
       <div className="">
         <div className="row justify-content-center">
-        <div className="col-4">
+          <div className="col-4"></div>
+          <div className="col-4">
+            <div className="lettersBox">
+              {this.props.letters.map((item) => (
+                <button
+                  className="alphaLtrs"
+                  key={item}
+                  name={item}
+                  value={item}
+                  disabled={
+                    this.props.fetched && this.props.guessedLetters
+                      ? this.props.guessedLetters.has(item) ||
+                        !this.props.counter
+                      : false
+                  }
+                  onClick={this.props.fetched ? this.props.clickedButton : null}
+                >
+                  {item.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="col-4">
-              <div className="lettersBox">
-           {this.props.letters.map((item) => (
-          <button className="alphaLtrs"
-            key={item}
-            name={item}
-            value={item}
-            disabled={
-              this.props.fetched && this.props.guessedLetters
-                ? this.props.guessedLetters.has(item)
-                : false
-            }
-            onClick={this.props.fetched ? this.props.clickedButton : null}
-          >
-            {item.toUpperCase()}
-          </button>
-        ))}
-        </div>
-        </div>
-      </div>
-       
       </div>
     );
   }
