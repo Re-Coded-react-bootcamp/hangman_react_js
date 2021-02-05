@@ -42,55 +42,67 @@ const initialState = {
 export default class Main extends Component {
   constructor(props) {
     super(props);
-      this.state = { ...initialState };
+    this.state = { ...initialState };
   }
 
-  getdata = () => {fetch("https://random-word-api.herokuapp.com/word?number=1")
-  .then( res => res.json())
-  .then( result => this.setState({ 
-    word: result[0],
-    fetched: true
-    }), 
-    error => { this.setState({
-      error: error 
-      })
-    });
-  }
-
- componentDidMount() {
-   this.getdata()
- }
- 
-  handlePlayAgain = () => {
-    this.getdata()
-    this.setState({
-      ...initialState,
-      guessedLetters: this.state.guessedLetters.clear()
-    });
+  getdata = () => {
+    fetch('https://random-word-api.herokuapp.com/word?number=1')
+      .then((res) => res.json())
+      .then(
+        (result) =>
+          this.setState({
+            word: result[0],
+            fetched: true,
+          }),
+        (error) => {
+          this.setState({
+            error: error,
+          });
+        }
+      );
   };
 
+  componentDidMount() {
+    this.getdata();
+  }
+
+  handlePlayAgain = () => {
+    this.getdata();
+    this.setState({
+      ...initialState,
+      guessedLetters: this.state.guessedLetters.clear(),
+    });
+  };
   clickedButton = (event) => {
     if (!this.state.word.includes(event.target.name)) {
-      this.setState({ 
+      this.setState({
         counter: this.state.counter - 1,
-        guessedLetters: this.state.guessedLetters.add(event.target.name) 
-      })
-     }
-    else {
-        this.setState({
-        guessedLetters: this.state.guessedLetters.add(event.target.name)
-      })
-     }
-  }
+        guessedLetters: this.state.guessedLetters.add(event.target.name),
+      });
+    } else {
+      this.setState({
+        guessedLetters: this.state.guessedLetters.add(event.target.name),
+      });
+    }
+  };
 
   render() {
     return (
       <div>
         <div>{this.state.counter}</div>
 
-        <LetterBtn letters={this.state.alpha} clickedButton={this.clickedButton} 
-        guessedLetters={this.state.guessedLetters} counter={this.state.counter} fetched={this.state.fetched} />
-        <MatchedLetters letters={this.state.word} guessedLetters={this.state.guessedLetters} fetched={this.state.fetched} />
+        <LetterBtn
+          letters={this.state.alpha}
+          clickedButton={this.clickedButton}
+          guessedLetters={this.state.guessedLetters}
+          counter={this.state.counter}
+          fetched={this.state.fetched}
+        />
+        <MatchedLetters
+          word={this.state.word}
+          guessedLetters={this.state.guessedLetters}
+          fetched={this.state.fetched}
+        />
         <HangState />
 
         <div>
