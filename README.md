@@ -1,7 +1,7 @@
 # Hangman Game
 
 the most Dangerous game you will ever play! if you don't win a person will be hanged 👨‍🦱🔪 !! <br>
-Visit to play
+Visit <a href="https://601d75deb9896f193a4c41d6--nifty-booth-cc2308.netlify.app/">Hangman</a> to play
 
 ## Game OverView
 
