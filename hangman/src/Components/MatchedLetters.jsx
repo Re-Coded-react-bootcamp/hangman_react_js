@@ -8,7 +8,13 @@ export default class MatchedLetters extends Component {
     return (
       <div>
         <div className="row justify-content-center">
-          <div className="col counter">Counter: {this.props.counter}</div>
+          <div className={`col counter ${this.props.isWon ? 'blink_me' : ''}`}>
+            {this.props.isWon
+              ? 'YOU WON'
+              : this.props.counter === 0
+              ? 'YOU LOST'
+              : `Counter: ${this.props.counter}`}
+          </div>
           <div className="matchedLtrs">
             <div className="col-auto">
               {word.map((letter, i) => {

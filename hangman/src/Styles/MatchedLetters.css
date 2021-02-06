@@ -33,3 +33,15 @@
   align-items: center;
   justify-content: center;
 }
+
+.blink_me {
+  color: red;
+  font-size: 14;
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

@@ -156,6 +156,7 @@ export default class Main extends Component {
 
   render() {
     let obj = this.state.desc;
+    console.log(this.state);
     return (
       <div className="container ">
         {this.state.fetcheddesc ? (
@@ -175,6 +176,7 @@ export default class Main extends Component {
               guessedLetters={this.state.guessedLetters}
               fetched={this.state.fetched}
               counter={this.state.counter}
+              isWon={this.state.isWon}
             />
           </div>
         ) : (
