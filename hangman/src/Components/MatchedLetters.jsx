@@ -11,20 +11,18 @@ export default class MatchedLetters extends Component {
           <div className="col-4"></div>
           <div className="matchedLtrs">
             <div className="col-8">
-              {word.map((letter) => {
+              {word.map((letter, i) => {
                 let isLetterMached =
                   guessedLetters && guessedLetters.has(letter);
                 return (
-                  <>
-                    <p
-                      className={`letters ${
-                        isLetterMached ? 'black-text' : 'white-text'
-                      }`}
+                  <p className={'letters'} key={i}>
+                    <span
+                      className={isLetterMached ? 'black-text' : 'white-text'}
                     >
                       {isLetterMached ? letter : '*'}
-                    </p>
-                    <p className="dashes">{'  '}</p>{' '}
-                  </>
+                    </span>
+                    <span className="dashes">{'  '}</span>
+                  </p>
                 );
               })}
             </div>

@@ -11,11 +11,18 @@ function App() {
     ref.current.handlePlayAgain();
   };
 
+  const handleHintClick = () => {
+    ref.current.handleHintClick();
+  };
+
   return (
     <div className="App">
       <Header />
       <Main ref={ref} />
-      <Footer handlePlayagain={handlePlayagain} />
+      <Footer
+        handlePlayagain={handlePlayagain}
+        handleHintClick={handleHintClick}
+      />
     </div>
   );
 }

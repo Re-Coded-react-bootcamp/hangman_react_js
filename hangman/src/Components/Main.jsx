@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import LetterBtn from './LetterBtns';
 import MatchedLetters from './MatchedLetters';
 import HangState from './HangState';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from "react-loader-spinner";
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
 import _ from 'lodash';
 import '../Styles/Main.css';
 
@@ -19,6 +19,7 @@ const initialState = {
   isWon: false,
   guessedLetters: new Set(),
   corrletter: new Set(),
+  showHint: false,
   alpha: [
     'a',
     'b',
@@ -62,8 +63,8 @@ export default class Main extends Component {
           this.setState({
             word: result[0].split(''),
             fetched: true,
-          })
-        this.getdesc()
+          });
+          this.getdesc();
         },
         (error) => {
           this.setState({
@@ -74,36 +75,48 @@ export default class Main extends Component {
   };
 
   getdesc = () => {
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en_US/${this.state.word}`)
-    .then(res => res.json())
-    .then( 
-      (result) => 
-      this.setState({
-        desc: result,
-        fetcheddesc: true,
-      }),
-      (error) => {
-        this.setState({
-          errordesc: error,
-        });
-      }
-    );
+    fetch(
+      `https://api.dictionaryapi.dev/api/v2/entries/en_US/${this.state.word.join(
+        ''
+      )}`
+    )
+      .then((res) => res.json())
+      .then(
+        (result) =>
+          this.setState({
+            desc: result,
+            fetcheddesc: true,
+          }),
+        (error) => {
+          this.setState({
+            errordesc: error,
+          });
+        }
+      );
   };
 
   componentDidMount() {
-    this.getdata()
+    this.getdata();
   }
 
   handlePlayAgain = () => {
     this.setState({
       ...initialState,
-      guessedLetters: new Set()
+      guessedLetters: new Set(),
     });
     this.getdata();
   };
 
+  handleHintClick = () => {
+    this.setState((prevState) => {
+      return {
+        showHint: !prevState.showHint,
+      };
+    });
+  };
+
   clickedButton = (event) => {
-    let won = false
+    let won = false;
     let letterClicked = event.target.name;
     if (!this.state.word.includes(letterClicked)) {
       this.setState((prevState) => {
@@ -129,15 +142,14 @@ export default class Main extends Component {
     }
     for (let letter of this.state.word) {
       if (this.state.guessedLetters.has(letter)) {
-        continue
-      }
-      else {
-        won = false
-        break
+        continue;
+      } else {
+        won = false;
+        break;
       }
     }
     if (won) {
-      alert('won')
+      alert('won');
     }
   };
 
@@ -152,30 +164,41 @@ export default class Main extends Component {
           <div className="col-4"></div>
         </div>
 
-        {this.state.fetcheddesc ? 
-          <div><div>{ _.get( obj, ["0", "meanings", "0", "definitions", "0", "definition"],'No Available Data!') } </div>
-          {console.log(obj)}
-          <MatchedLetters
-          word={this.state.word}
-          guessedLetters={this.state.guessedLetters}
-          fetched={this.state.fetched}
-        /></div> :
+        {this.state.fetcheddesc ? (
+          <div>
+            {this.state.showHint && (
+              <div>
+                {_.get(
+                  obj,
+                  ['0', 'meanings', '0', 'definitions', '0', 'definition'],
+                  'No Available Data!'
+                )}{' '}
+              </div>
+            )}
+            {console.log(obj)}
+            <MatchedLetters
+              word={this.state.word}
+              guessedLetters={this.state.guessedLetters}
+              fetched={this.state.fetched}
+            />
+          </div>
+        ) : (
           <Loader
             type="Puff"
             color="#00BFFF"
             height={68}
             width={68}
-            timeout={3000} 
+            timeout={3000}
           />
-        }
-          
-         
+        )}
+
         <LetterBtn
           letters={this.state.alpha}
           clickedButton={this.clickedButton}
           guessedLetters={this.state.guessedLetters}
           counter={this.state.counter}
           fetched={this.state.fetched}
+          isWon={this.state.isWon}
         />
 
         <HangState counter={this.state.counter} isWon={this.state.isWon} />

@@ -16,7 +16,12 @@ export default class Footer extends Component {
               </button>
             </div>
             <div className="col-2">
-              <button className="btn btn-outline-dark">Hint</button>
+              <button
+                className="btn btn-outline-dark"
+                onClick={this.props.handleHintClick}
+              >
+                Hint
+              </button>
             </div>
           </div>
         </div>
