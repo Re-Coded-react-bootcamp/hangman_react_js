@@ -19,11 +19,8 @@
   }
 }
 
-
 .lead {
-  font-family: "Times New Roman",
-    Times,
-    serif;
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 400;
   letter-spacing: 1px;
   margin-top: -1em;

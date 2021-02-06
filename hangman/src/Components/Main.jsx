@@ -131,6 +131,7 @@ export default class Main extends Component {
           if (item === letterClicked) {
             prevState.machedWord[i] = item;
           }
+          return item;
         });
 
         return {
@@ -156,16 +157,9 @@ export default class Main extends Component {
   render() {
     let obj = this.state.desc;
     return (
-      <div>
-        <div className="row justify-content-center">
-          <div className="col-4">
-            <div className="counter"> Counter: {this.state.counter}</div>
-          </div>
-          <div className="col-4"></div>
-        </div>
-
+      <div className="container ">
         {this.state.fetcheddesc ? (
-          <div>
+          <div className="justify-content-center">
             {this.state.showHint && (
               <div>
                 {_.get(
@@ -180,28 +174,30 @@ export default class Main extends Component {
               word={this.state.word}
               guessedLetters={this.state.guessedLetters}
               fetched={this.state.fetched}
+              counter={this.state.counter}
             />
           </div>
         ) : (
           <Loader
             type="Puff"
-            color="#00BFFF"
-            height={68}
-            width={68}
+            color="#1d586c"
+            height={46}
+            width={46}
             timeout={3000}
           />
         )}
 
-        <LetterBtn
-          letters={this.state.alpha}
-          clickedButton={this.clickedButton}
-          guessedLetters={this.state.guessedLetters}
-          counter={this.state.counter}
-          fetched={this.state.fetched}
-          isWon={this.state.isWon}
-        />
-
-        <HangState counter={this.state.counter} isWon={this.state.isWon} />
+        <div className="row">
+          <HangState counter={this.state.counter} isWon={this.state.isWon} />{' '}
+          <LetterBtn
+            letters={this.state.alpha}
+            clickedButton={this.clickedButton}
+            guessedLetters={this.state.guessedLetters}
+            counter={this.state.counter}
+            fetched={this.state.fetched}
+            isWon={this.state.isWon}
+          />
+        </div>
       </div>
     );
   }

@@ -8,9 +8,9 @@ export default class MatchedLetters extends Component {
     return (
       <div>
         <div className="row justify-content-center">
-          <div className="col-4"></div>
+          <div className="col counter">Counter: {this.props.counter}</div>
           <div className="matchedLtrs">
-            <div className="col-8">
+            <div className="col-auto">
               {word.map((letter, i) => {
                 let isLetterMached =
                   guessedLetters && guessedLetters.has(letter);

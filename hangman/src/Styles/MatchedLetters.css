@@ -1,23 +1,35 @@
 .letters {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: inline-block;
-  border-bottom: 2px solid gray;
 }
 .dashes {
   width: 10px;
   height: 10px;
-  display: inline-block;
+
+  margin: 0 3;
 }
 
 .white-text {
   color: white;
+  width: 20px;
+  display: inline-block;
+  border-bottom: 2px solid gray;
 }
 .black-text {
   color: black;
+  width: 20px;
+  display: inline-block;
+  border-bottom: 2px solid gray;
 }
 
-.matchedLtrs{
-      width: 50%;
-
+.matchedLtrs {
+  width: 50%;
+  margin: 0 auto;
+}
+.counter {
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

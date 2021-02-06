@@ -14,7 +14,7 @@ function App() {
   const handleHintClick = () => {
     ref.current.handleHintClick();
   };
-
+  console.log(window.innerWidth);
   return (
     <div className="App">
       <Header />

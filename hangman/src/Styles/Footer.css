@@ -1,15 +1,24 @@
-footer{
- position: absolute;
- bottom: 0;
- width: 100%;
- padding: 3em;
- background-color: #1D586C;
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #1d586c;
 }
 
-.btn{
+.btn {
+  border-radius: 20px;
+  width: 120px;
+  height: 45px;
+  background-color: #e399a9;
+  font-weight: bold;
+}
+@media only screen and (max-width: 800px) {
+  .btn {
     border-radius: 20px;
-    width:120px;
-    height:45px;
-    background-color: #E399A9;
+    width: 90px;
+    height: 30px;
+    background-color: #e399a9;
     font-weight: bold;
+    font-size: 12px;
+  }
 }

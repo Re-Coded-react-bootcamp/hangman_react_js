@@ -31,11 +31,8 @@ export default class HangState extends Component {
 
   render() {
     return (
-      <div className="row justify-content-center">
-        <div className="col-8">
-          <img src={this.state.image} alt="hangman" className="imgBlock" />
-        </div>
-        <div className="col-4"></div>
+      <div className=" col justify-content-center">
+        <img src={this.state.image} alt="hangman" className="imgBlock" />
       </div>
     );
   }

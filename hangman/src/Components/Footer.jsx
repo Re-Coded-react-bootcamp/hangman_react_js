@@ -4,10 +4,10 @@ import '../Styles/Footer.css';
 export default class Footer extends Component {
   render() {
     return (
-      <footer className="text-center text-lg-start">
+      <footer className="text-center text-lg-start p-4 p-md-12">
         <div className="container mt-auto">
           <div className="row justify-content-center">
-            <div className="col-2">
+            <div className="col col-lg-3 col-md-4 m-1">
               <button
                 className="btn btn-outline-dark"
                 onClick={this.props.handlePlayagain}
@@ -15,7 +15,7 @@ export default class Footer extends Component {
                 Play again
               </button>
             </div>
-            <div className="col-2">
+            <div className="col col-lg-3 col-md-4 m-1">
               <button
                 className="btn btn-outline-dark"
                 onClick={this.props.handleHintClick}
