@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useRef } from 'react';
 import './App.css';
+import Main from './Components/Main';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
 
 function App() {
+  let ref = useRef();
+
+  const handlePlayagain = () => {
+    ref.current.handlePlayAgain();
+  };
+
+  const handleHintClick = () => {
+    ref.current.handleHintClick();
+  };
+  console.log(window.innerWidth);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Main ref={ref} />
+      <Footer
+        handlePlayagain={handlePlayagain}
+        handleHintClick={handleHintClick}
+      />
     </div>
   );
 }
