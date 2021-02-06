@@ -21,7 +21,7 @@ export default class ImagesCount extends Component {
        
         return (
           
-               <img src={imgs[this.props.counter]} alt="img1" width="200"/>
+               <img className="center-images" src={imgs[this.props.counter]} alt="img1" width="200"/>
              
            
         )
