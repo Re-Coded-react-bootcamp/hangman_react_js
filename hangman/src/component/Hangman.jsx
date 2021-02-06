@@ -6,6 +6,10 @@ import SecretWord from "./SecretWord";
 import GameStatus from "./GameStatus";
 import Hint from "./Hint";
 import Header from "./Header";
+import Win from "./win.mp3";
+import Lost from "./lost.mp3";
+import Wrong from "./WrongBtn.mp3";
+import Right  from "./rightBtn.mp3";
 
 
 
@@ -14,19 +18,21 @@ export default class Hangman extends Component {
     constructor(props) {
         super(props);
         this.state = {
-             counter:10,
+            counter:10,
             word:"",
-           UsedLetters:[],
-           correctLetters:[],
-           isLoaded:false,
-           hint: []
-
+            UsedLetters:[],
+            correctLetters:[],
+            isLoaded:false,
+            hint: [],
+            error:""
         };
+
+
         
       }
+      
 
      
-
 
       componentDidMount() {
         fetch("https://random-word-api.herokuapp.com/word?number=1")
@@ -52,10 +58,17 @@ export default class Hangman extends Component {
     
     render() {
       
+     
+        const start =  (sound) => {
+            let audio = new Audio(sound)
+            audio.pause();
+            audio.play()
+            audio.volume = 0.5;
+          }
 
-        const giveHint = (boolean) => {
+        const giveHint = (hintBtnClicked) => {
            
-            if(this.state.hint.length>1 && boolean==true){
+            if(this.state.hint.length>1 && hintBtnClicked==true){
                 alert("You only have two hints");
                 return
             }
@@ -81,6 +94,7 @@ export default class Hangman extends Component {
                         const correctLetters = [...state.correctLetters, letter];
                         return {correctLetters,};
                     });
+
         
                       return
                    
@@ -92,16 +106,16 @@ export default class Hangman extends Component {
         const checkWin =()=>{
             let status="win";
             this.state.word.split("").forEach(letter =>{
-                if(!this.state.correctLetters.includes(letter)){
+                if(!this.state.correctLetters.includes(letter)){  
                     status="active"
                 }
             })
+          
             return status;
         }
-        const gameStatus = this.state.counter === 0 ? 'Lost'  : checkWin();
-
-        
+        let gameStatus = this.state.counter === 0 ? 'Lost'  : checkWin();
      
+           
 
 
         //when the letter is wrong the counter increases
@@ -128,7 +142,14 @@ export default class Hangman extends Component {
                     const correctLetters = [...state.correctLetters, letter];
                     return {correctLetters,};
                 });
-            }else{ counterIncrease(); }
+                start(Right)
+              
+            }else{ 
+                start(Wrong)
+                counterIncrease();
+               
+            
+            }
 
         }
 
@@ -139,7 +160,7 @@ export default class Hangman extends Component {
             return  (this.state.UsedLetters.includes(btnLetter));  ;
         }
 
-        
+    
         return (
             <div className="grid-1">
             
@@ -162,12 +183,22 @@ export default class Hangman extends Component {
                         (!this.state.isLoaded)
                         ? <div>Looking for a Word...</div>
                         :   <React.Fragment>
+                        
+                           
+                      
+                        
                                 <SecretWord word={this.state.word} correctLetters={this.state.correctLetters}/>
                                 <GameStatus gameStatus={gameStatus} counter={this.state.counter} onClick={giveHint}/>
+                             
+                                {
+                                    (gameStatus==="win")? start(Win):   (gameStatus==="Lost")? start(Lost): console.log("keep going")                              
+                                  
+                                 }
                             </React.Fragment>
                     } 
                     <div className="d-inline mt-2">
                         <PlayAgain onClick={this.props.startNewGame}  />
+                        
                         <Hint  onClick={giveHint} hint={this.state.hint} />
                     </div>
                     </div>     

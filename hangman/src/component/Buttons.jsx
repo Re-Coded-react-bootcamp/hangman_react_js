@@ -15,8 +15,8 @@ export default class Button extends Component {
     
       <button
        disabled={ this.props.status}
-      className={"buttonStyle "+ this.props.status}
-      onClick={() => this.props.onClick(this.props.letter)}
+        className={"buttonStyle "+ this.props.status}
+       onClick={() => this.props.onClick(this.props.letter)}
       >
       {this.props.letter}
      
