@@ -27,3 +27,9 @@ The game ends when you discover the answer before the hangman is formed or when 
 1. Clone the repository
 2. `npm install` or `yarn`
 3. `npm start` or `yarn start` app start with your port number
+
+--------------------------------------------------------------
+### Play here
+
+- Link : [https://grass-team-hangman-reactjs.netlify.app/](https://grass-team-hangman-reactjs.netlify.app)
+
