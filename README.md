@@ -6,7 +6,7 @@
 
 #### Resulting image looks something like this:
 
-![hangman game](images/example.JPG)
+![hangman game](master/images/example.JPG)
 
 ## How to play
 
