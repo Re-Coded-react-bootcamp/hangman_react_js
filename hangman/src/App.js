@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 
+import  React, { useState } from 'react';
+import Hangman from "./component/Hangman";
+import newGame from "./newGame.mp3";
+
 function App() {
+  const [gameId, setGameId]= useState(1)
+  const newGmae=() => {
+    setGameId(gameId +1)
+    let audio = new Audio(newGame)
+    audio.play()
+  
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+      <Hangman key={gameId} startNewGame={newGmae} />
     </div>
   );
 }
 
+
+
+
 export default App;
+
